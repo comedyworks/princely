@@ -39,7 +39,7 @@ module Princely
       # Sets style sheets on PDF renderer
       assets = Rails.application.assets ||
         ::Sprockets::Railtie.build_environment(Rails.application)
-      prince.add_style_sheets(*options[:stylesheets].collect{|style| assets.find_asset(style.gsub(%r{/assets/}, '')).try(:pathname).sub('public/stylesheets', 'public/assets').to_s})
+      prince.add_style_sheets(*options[:stylesheets].collect{|style| assets.find_asset(style.gsub(%r{/assets/}, '')).try(:pathname).to_s.sub('public/stylesheets', 'public/assets')})
 
       html_string = render_to_string(options.slice(:template, :layout, :handlers, :formats, :locals))
 
