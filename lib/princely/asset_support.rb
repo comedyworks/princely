@@ -18,7 +18,7 @@ module Princely
       # Remove /assets/ from generated names and try and find a matching asset
       assets = Rails.application.assets ||
         ::Sprockets::Railtie.build_environment(Rails.application)
-      assets.find_asset(asset.gsub(%r{/assets/}, '')).try(:pathname).sub('public/stylesheets', 'public/assets') || asset
+      assets.find_asset(asset.gsub(%r{/assets/}, '')).try(:pathname).to_s.sub('public/stylesheets', 'public/assets') || asset
     end
   end
 end
